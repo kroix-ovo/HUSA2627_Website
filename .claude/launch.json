@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "husa-dev", "runtimeExecutable": "pnpm", "runtimeArgs": ["dev"], "port": 4321, "url": "http://127.0.0.1:4321" }
+  ]
+}

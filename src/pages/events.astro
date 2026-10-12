@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import { site } from '../content/site';
+---
+
+<Layout title="Events & meetings">
+  <PageIntro
+    title="Connect with the Herd."
+    section="Events & meetings"
+    description="Find ways to come together, get involved, and hear what HUSA is working on."
+  />
+  <section class="page-body">
+    <div class="container empty-state">
+      <h2>No upcoming dates are listed yet.</h2>
+      <p>
+        Follow HUSA’s official announcements for current events and meeting
+        information.
+      </p>
+      <div class="actions">
+        <a class="button" href={site.instagram}>
+          View HUSA announcements
+        </a>
+        <a class="button button-subtle" href={`mailto:${site.email}`}>
+          Ask about a meeting
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

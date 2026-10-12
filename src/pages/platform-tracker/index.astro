@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import JoinBanner from '../../components/JoinBanner.astro';
+import Icon from '../../components/Icon.astro';
+import { initiatives } from '../../content/platform';
+import { site } from '../../content/site';
+---
+
+<Layout title="Our platform">
+  <PageIntro
+    title="ALL IN for a stronger Howard."
+    section="Platform tracker"
+    description="Explore the 66th Administration’s commitments, projects, and priorities for the student body."
+  />
+  <section class="page-body">
+    <div class="container">
+      <div class="platform-list pillars-page">
+        {initiatives.map((initiative, index) => (
+          <a
+            class="platform-row"
+            href={`/platform-tracker/${initiative.slug}/`}
+          >
+            <span class="row-number">{String(index + 1).padStart(2, '0')}</span>
+            <div>
+              <h2 style="font-size:25px">{initiative.title}</h2>
+              <p>{initiative.summary}</p>
+            </div>
+            <Icon />
+          </a>
+        ))}
+      </div>
+      <div class="callout">
+        <h2>Commitments and progress</h2>
+        <p>
+          These pages describe the administration’s platform. Follow the
+          administration’s reported progress in the official ALL IN platform
+          tracker.
+        </p>
+        <a class="button" href={site.platformTracker}>
+          Open the live platform tracker <Icon />
+        </a>
+      </div>
+    </div>
+  </section>
+  <JoinBanner />
+</Layout>

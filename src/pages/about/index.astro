@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import Icon from '../../components/Icon.astro';
+import JoinBanner from '../../components/JoinBanner.astro';
+---
+
+<Layout title="About HUSA">
+  <PageIntro
+    title="The eyes, ears, and voice of the student body."
+    section="About HUSA"
+    description="The Howard University Student Association brings student interests and concerns into the university’s decision-making process."
+  />
+  <section class="page-body">
+    <div class="container split-page">
+      <div class="prose">
+        <h2>How HUSA functions</h2>
+        <p>
+          We function as a rallying point for activists and academics alike.
+          HUSA’s purpose is to provide input into the university’s
+          decision-making process, act as a spokesperson for students, and
+          maintain communication about students’ interests and concerns across
+          Howard’s schools and colleges.
+        </p>
+        <h2>The 66th Administration</h2>
+        <p>
+          ALL IN is the 66th Administration of the Howard University Student
+          Association. It is a commitment, a vision, and a responsibility.
+        </p>
+        <div class="actions">
+          <a class="button" href="/about/leadership/">
+            Meet HUSA 66
+          </a>
+          <a class="text-link" href="/departments/">
+            Explore departments <Icon />
+          </a>
+        </div>
+        <h2>A history of student voice</h2>
+        <p>
+          Since its establishment in 1961, HUSA has aimed to be a mechanism for
+          effective change on Howard’s campus.
+        </p>
+        <a class="text-link" href="/about/history/">
+          History of HUSA <Icon />
+        </a>
+      </div>
+      <aside class="side-panel">
+        <h2>Student government, connected.</h2>
+        <p>
+          Explore the Executive Branch’s platform and connect with the wider
+          student government community.
+        </p>
+        <a class="text-link" href="/platform-tracker/">
+          Explore our platform <Icon />
+        </a>
+        <a class="text-link" href="/contact/">
+          Connect with HUSA <Icon />
+        </a>
+      </aside>
+    </div>
+  </section>
+  <JoinBanner />
+</Layout>

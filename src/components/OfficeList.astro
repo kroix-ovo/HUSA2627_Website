@@ -1,0 +1,27 @@
+---
+import { offices } from '../content/resources';
+interface Props {
+  items?: typeof offices;
+}
+const { items = offices } = Astro.props;
+---
+
+<ul class="directory-list">
+  {items.map((office) => (
+    <li
+      class="directory-row"
+      id={office.slug}
+      data-office
+      data-search={`${office.name} ${office.description} ${office.email} ${office.categories.join(' ')}`}
+    >
+      <div>
+        <h3>{office.name}</h3>
+        <p>{office.description}</p>
+      </div>
+      <div class="directory-contacts">
+        {office.email && <a href={`mailto:${office.email}`}>{office.email}</a>}
+        <a href={`tel:+1${office.phone.replaceAll('-', '')}`}>{office.phone}</a>
+      </div>
+    </li>
+  ))}
+</ul>

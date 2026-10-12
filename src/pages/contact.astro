@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../content/site';
+---
+
+<Layout title="Contact HUSA">
+  <PageIntro
+    title="Let’s talk, Bison."
+    section="Contact HUSA"
+    description="Questions, ideas, or a concern on campus? Connect with your student government."
+  />
+  <section class="page-body">
+    <div class="container contact-grid">
+      <div>
+        <h2>Get in touch.</h2>
+        <a class="contact-item" href={`mailto:${site.email}`}>
+          <span>Email the Executive Branch</span>
+          <strong>{site.email}</strong>
+        </a>
+        <a
+          class="contact-item"
+          href={`tel:+1${site.phone.replaceAll('-', '')}`}
+        >
+          <span>HUSA hotline</span>
+          <strong>{site.phone}</strong>
+        </a>
+        <div class="contact-item">
+          <span>Find our office</span>
+          <strong>{site.address}</strong>
+        </div>
+        <a class="text-link" href="/departments/">
+          Find a specific department <Icon />
+        </a>
+      </div>
+      <div>
+        <h2>We’re here to listen.</h2>
+        <p>
+          For campus-related issues, the Case Compass Program gives you a direct
+          way to request support.
+        </p>
+        <a class="button" href={site.caseCompass}>
+          Open the support form <Icon />
+        </a>
+        <div class="callout">
+          <h2>Stay connected.</h2>
+          <p>Follow HUSA for announcements and ways to take part.</p>
+          <a class="text-link" href={site.instagram}>
+            Instagram · @husassociation <Icon />
+          </a>
+          <br />
+          <a class="text-link" href={site.linktree}>
+            Explore HUSA Linktree <Icon />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

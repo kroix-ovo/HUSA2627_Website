@@ -1,0 +1,98 @@
+---
+import Icon from './Icon.astro';
+import { navigation } from '../content/site';
+const path = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="HUSA home">
+      <img src="/images/husa-seal.webp" width="62" height="62" alt="" />
+      <span>
+        <strong>HUSA</strong>
+        <span>
+          Howard University
+          <br />
+          Student Association
+        </span>
+      </span>
+    </a>
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-navigation"
+      aria-label="Open navigation"
+    >
+      <Icon name="menu" />
+    </button>
+    <nav id="primary-navigation" aria-label="Main navigation">
+      {navigation.map((link) => (
+        <a
+          href={link.href}
+          aria-current={path.startsWith(link.href) ? 'page' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a class="search-control" href="/search-husa/" aria-label="Search HUSA">
+        <Icon name="search" />
+      </a>
+    </nav>
+  </div>
+</header>
+<noscript>
+  <style is:inline>
+    #primary-navigation {
+      display: flex;
+      position: static;
+      flex-wrap: wrap;
+    }
+    .menu-toggle {
+      display: none;
+    }
+    .header-inner {
+      flex-wrap: wrap;
+      padding-block: 16px;
+    }
+  </style>
+</noscript>
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const navigation = document.querySelector<HTMLElement>('#primary-navigation');
+  function closeMenu(returnFocus = false) {
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.setAttribute('aria-label', 'Open navigation');
+    if (returnFocus) toggle?.focus();
+  }
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute(
+      'aria-label',
+      open ? 'Close navigation' : 'Open navigation',
+    );
+  });
+  document.addEventListener('keydown', (event) => {
+    if (
+      event.key === 'Escape' &&
+      toggle?.getAttribute('aria-expanded') === 'true'
+    )
+      closeMenu(true);
+  });
+  document.addEventListener('click', (event) => {
+    if (
+      event.target instanceof Node &&
+      !navigation?.contains(event.target) &&
+      !toggle?.contains(event.target)
+    )
+      closeMenu();
+  });
+  navigation?.addEventListener('click', (event) => {
+    if (event.target instanceof Element && event.target.closest('a'))
+      closeMenu();
+  });
+  matchMedia('(min-width: 901px)').addEventListener('change', () =>
+    closeMenu(),
+  );
+</script>

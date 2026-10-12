@@ -1,0 +1,7 @@
+# Only observed legacy routes are mapped here. Verify published URLs before launch.
+/presidents-address /about/leadership/ 301
+/presidents-address/ /about/leadership/ 301
+/scholarships /resources/scholarships/ 301
+/scholarships/ /resources/scholarships/ 301
+/internships /resources/internships/ 301
+/internships/ /resources/internships/ 301

@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+---
+
+<Layout title="Page not found">
+  <PageIntro
+    title="Let’s get you back on track."
+    section="Page not found"
+    description="This page may have moved. Search HUSA or browse the Herd Hub to find what you need."
+  />
+  <section class="page-body">
+    <div class="container actions">
+      <a class="button" href="/search-husa/">
+        Search HUSA
+      </a>
+      <a class="button button-subtle" href="/resources/">
+        Explore resources
+      </a>
+      <a class="text-link" href="/">
+        Back to home
+      </a>
+    </div>
+  </section>
+</Layout>

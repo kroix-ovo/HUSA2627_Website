@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../content/site';
+---
+
+<Layout title="Get involved">
+  <PageIntro
+    title="Your voice belongs here."
+    section="Get involved"
+    description="Share your ideas, connect with your representatives, and take part in the Howard community."
+  />
+  <section class="page-body">
+    <div class="container involvement-options">
+      <article class="involvement-option">
+        <h2>Join the team.</h2>
+        <p>
+          Interested in contributing to HUSA? Check our official links for
+          opportunities, or contact the Executive Branch about ways to get
+          involved.
+        </p>
+        <a class="button" href={site.linktree}>
+          Explore HUSA opportunities <Icon />
+        </a>
+        <a class="text-link" href={site.prApplication}>
+          Public Relations staffer application <Icon />
+        </a>
+      </article>
+      <article class="involvement-option">
+        <h2>Share what matters.</h2>
+        <p>
+          Help HUSA understand your campus experience. Bring a concern to Case
+          Compass or contact the department closest to your idea.
+        </p>
+        <a class="button" href={site.caseCompass}>
+          Open Case Compass <Icon />
+        </a>
+        <a class="text-link" href="/departments/">
+          Find your department <Icon />
+        </a>
+      </article>
+      <article class="involvement-option">
+        <h2>Stay in the loop.</h2>
+        <p>
+          Follow announcements from HUSA and find ways to connect with the
+          student body.
+        </p>
+        <a class="text-link" href={site.instagram}>
+          Follow @husassociation <Icon />
+        </a>
+      </article>
+      <article class="involvement-option">
+        <h2>Come together.</h2>
+        <p>
+          Check for upcoming events or ask HUSA about opportunities to meet and
+          participate.
+        </p>
+        <a class="text-link" href="/events/">
+          Events & meetings <Icon />
+        </a>
+      </article>
+    </div>
+  </section>
+</Layout>

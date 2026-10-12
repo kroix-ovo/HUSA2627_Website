@@ -1,0 +1,195 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Icon from '../components/Icon.astro';
+import { offices } from '../content/resources';
+import { departments } from '../content/departments';
+import { initiatives } from '../content/platform';
+const entries = [
+  {
+    title: 'The Herd Hub',
+    kind: 'Resources',
+    text: 'Student resources, scholarships, internships, housing, financial aid, academic support, and wellness.',
+    href: '/resources/',
+  },
+  {
+    title: 'Contact HUSA',
+    kind: 'Contact',
+    text: 'Email, hotline, office address, social links, and student support.',
+    href: '/contact/',
+  },
+  {
+    title: 'Meet HUSA 66',
+    kind: 'Leadership',
+    text: 'President Ware, Vice President Garcia, and the Executive Branch.',
+    href: '/about/leadership/',
+  },
+  {
+    title: 'Get involved',
+    kind: 'Participation',
+    text: 'Join the team, share your ideas, or connect with HUSA.',
+    href: '/get-involved/',
+  },
+  {
+    title: 'Departments',
+    kind: 'Organization',
+    text: 'Find HUSA departments, directors, responsibilities, and contact details.',
+    href: '/departments/',
+  },
+  ...offices.map((item) => ({
+    title: item.name,
+    kind: 'Campus office',
+    text: `${item.description} ${item.email}`,
+    href: `/resources/#${item.slug}`,
+  })),
+  ...departments.map((item) => ({
+    title: item.name,
+    kind: 'HUSA department',
+    text: `${item.summary} ${item.leads.join(' ')} ${item.email}`,
+    href: `/departments/#${item.slug}`,
+  })),
+  ...initiatives.map((item) => ({
+    title: item.title,
+    kind: 'Platform',
+    text: `${item.summary} ${item.commitments.join(' ')}`,
+    href: `/platform-tracker/${item.slug}/`,
+  })),
+];
+---
+
+<Layout title="Search HUSA">
+  <PageIntro
+    title="What can we help you find?"
+    description="Search HUSA resources, departments, and initiatives."
+  >
+    <form class="search-form" role="search" action="/search-husa/" method="get">
+      <label class="visually-hidden" for="search-query">
+        Search HUSA
+      </label>
+      <input
+        id="search-query"
+        name="q"
+        type="search"
+        placeholder="Search HUSA…"
+        maxlength="200"
+        autocomplete="off"
+      />
+      <button class="button" type="submit">
+        Search <Icon name="search" />
+      </button>
+    </form>
+    <div class="search-suggestions" aria-label="Suggested searches">
+      {['Housing', 'Scholarships', 'Departments', 'Contact'].map((term) => (
+        <button type="button" data-suggestion={term}>
+          {term}
+        </button>
+      ))}
+    </div>
+  </PageIntro>
+  <section class="page-body">
+    <div class="container">
+      <p id="search-status" role="status" aria-live="polite">
+        Enter a word or phrase, or choose a suggested search.
+      </p>
+      <div id="search-results">
+        {entries.map((entry) => (
+          <article
+            class="search-result"
+            data-result
+            data-search={`${entry.title} ${entry.text}`}
+            hidden
+          >
+            <span class="search-kind">{entry.kind}</span>
+            <h2>
+              <a href={entry.href}>{entry.title}</a>
+            </h2>
+            <p>{entry.text}</p>
+          </article>
+        ))}
+      </div>
+      <div class="empty-state" id="search-empty" hidden>
+        <h2>We couldn’t find a match.</h2>
+        <p>
+          Try a shorter search, browse the Herd Hub, or contact HUSA for help.
+        </p>
+        <a class="button" href="/resources/">
+          Browse resources
+        </a>
+      </div>
+      <noscript>
+        <div class="callout">
+          <h2>Browse HUSA</h2>
+          <p>
+            Search needs JavaScript. You can still browse{' '}
+            <a class="text-link" href="/resources/">
+              student resources
+            </a>
+            ,{' '}
+            <a class="text-link" href="/departments/">
+              departments
+            </a>
+            , and{' '}
+            <a class="text-link" href="/platform-tracker/">
+              our platform
+            </a>
+            .
+          </p>
+        </div>
+      </noscript>
+    </div>
+  </section>
+</Layout>
+<script>
+  import { matchesQuery, normalizeSearch } from '../lib/search';
+  const form = document.querySelector<HTMLFormElement>('.search-form');
+  const input = document.querySelector<HTMLInputElement>('#search-query');
+  const results = Array.from(
+    document.querySelectorAll<HTMLElement>('[data-result]'),
+  );
+  const status = document.querySelector<HTMLElement>('#search-status');
+  const empty = document.querySelector<HTMLElement>('#search-empty');
+  function search(updateUrl = true) {
+    const query = input?.value.trim().slice(0, 200) ?? '';
+    const meaningful = normalizeSearch(query).length > 0;
+    let count = 0;
+    results.forEach((result) => {
+      const match =
+        meaningful && matchesQuery(result.dataset.search ?? '', query);
+      result.hidden = !match;
+      if (match) count++;
+    });
+    if (status)
+      status.textContent = meaningful
+        ? `${count} ${count === 1 ? 'result' : 'results'} for “${query}”.`
+        : 'Enter a word or phrase, or choose a suggested search.';
+    if (empty) empty.hidden = !meaningful || count !== 0;
+    if (updateUrl) {
+      const url = new URL(location.href);
+      if (query) url.searchParams.set('q', query);
+      else url.searchParams.delete('q');
+      history.replaceState(null, '', url);
+    }
+  }
+  if (input)
+    input.value =
+      new URLSearchParams(location.search).get('q')?.slice(0, 200) ?? '';
+  search(false);
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    search();
+  });
+  document
+    .querySelectorAll<HTMLButtonElement>('[data-suggestion]')
+    .forEach((button) =>
+      button.addEventListener('click', () => {
+        if (input) input.value = button.dataset.suggestion ?? '';
+        search();
+        input?.focus();
+      }),
+    );
+  window.addEventListener('popstate', () => {
+    if (input)
+      input.value = new URLSearchParams(location.search).get('q') ?? '';
+    search(false);
+  });
+</script>

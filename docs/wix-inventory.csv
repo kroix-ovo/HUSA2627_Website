@@ -1,0 +1,30 @@
+source_title,observed_path,evidence_level,proposed_destination,migration_action,owner,review_status,notes
+Home,/,homepage inspected in editor,/,rebuild,,pending,Retain approved HUSA identity and move useful actions higher
+Contact,/contact,homepage link and page selector,/contact/,inspect and migrate,,pending,Confirm public contacts and form behavior
+Student Resources,/resources,homepage link and page selector,/resources/,inspect and migrate,,pending,Herd Hub; verify resource categories and destinations
+Join the Team,,page selector only,/get-involved/,inspect and migrate,,pending,Confirm application links and opportunity status
+Scholarships,,page selector only,/resources/scholarships/,inspect and migrate,,pending,Verify published slug and deadlines
+New Page,,page selector only,,inspect then decide,,pending,Do not publish an unreviewed placeholder
+Internships,,page selector only,/resources/internships/,inspect and migrate,,pending,Verify published slug and opportunity sources
+Search HUSA,/search-husa,homepage link and page selector,/search-husa/,replace Wix functionality,,pending,Inspect current search scope
+Search Results,,site pages group in selector,/search-husa/,inspect generated route,,pending,Distinguish custom page from Wix app results
+About,,page selector only,/about/,inspect and migrate,,pending,Homepage navigation exposes About submenu
+Meet HUSA 66,,page selector only,/about/leadership/,inspect and migrate,,pending,Confirm administration and people before publishing
+Departments,/departments,homepage link and page selector,/departments/,inspect and migrate,,pending,Homepage claims ten cabinet departments; verify current details
+History of HUSA,,page selector only,/about/history/,inspect and migrate,,pending,Verify historical claims and original slug
+Platform Tracker,/platform-tracker,homepage link and page selector,/platform-tracker/,inspect and migrate,,pending,Inspect data model and progress evidence
+Housing Our Herd,,page selector only,/platform-tracker/housing/,inspect and migrate,,pending,Proposed slug only; preserve original published URL or redirect
+Protecting our Herd,,page selector only,/platform-tracker/safety/,inspect and migrate,,pending,Proposed slug only; verify content and original path
+Feeding Our Herd,,page selector only,/platform-tracker/food/,inspect and migrate,,pending,Proposed slug only; verify content and original path
+Going Beyond the Classroom,,page selector only,/platform-tracker/beyond-classroom/,inspect and migrate,,pending,Proposed slug only; verify content and original path
+The Real HU Experience,,page selector only,/platform-tracker/hu-experience/,inspect and migrate,,pending,Proposed slug only; verify content and original path
+The Real Solutions,,page selector only,/platform-tracker/solutions/,inspect and migrate,,pending,Proposed slug only; verify content and original path
+Event Details,,event pages group in selector,/events/[slug]/,inspect integration,,pending,Inspect active events and signup dependencies
+Schedule,,event pages group in selector,/events/,inspect integration,,pending,Verify calendar source and time zones
+Search Results,,Wix site search group in selector,/search-husa/,replace Wix app behavior,,pending,Separate from same-named site page
+Search Suggestions Box,,Wix site search group in selector,/search-husa/,replace Wix app behavior,,pending,Inspect autocomplete and keyboard requirements
+Instagram Feed Expand Mode,,Instagram feed group in selector,,inspect integration,,pending,May be an app view rather than a standalone page
+New Safety Regulations,,popup group in selector,,inspect validity and expiry,,pending,Do not migrate stale safety notices without owner review
+POWR social feed,,homepage inspected in editor,,evaluate replacement,,pending,Observed @husassociation label; confirm feed portability
+Footer social links,,homepage inspected in editor,,correct destinations,,pending,Several labels point to Wix social accounts
+Footer copyright,,homepage inspected in editor,,correct approved date,,pending,Observed 2035 placeholder

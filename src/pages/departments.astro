@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/PageIntro.astro';
+import JoinBanner from '../components/JoinBanner.astro';
+import { departments } from '../content/departments';
+---
+
+<Layout title="Our departments">
+  <PageIntro
+    title="The people. The purpose. The work."
+    section="Our departments"
+    description="Find the teams behind the HUSA Executive Branch and connect with the department closest to your question."
+  />
+  <section class="page-body">
+    <div class="container department-grid">
+      {departments.map((department) => (
+        <article class="department" id={department.slug}>
+          <h2>{department.name}</h2>
+          <ul class="leads">
+            {department.leads.map((lead) => (
+              <li>{lead}</li>
+            ))}
+          </ul>
+          <p>{department.summary}</p>
+          {department.email ? (
+            <a class="text-link" href={`mailto:${department.email}`}>
+              {department.email}
+            </a>
+          ) : (
+            <a class="text-link" href="/contact/">
+              Contact HUSA for this office
+            </a>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+  <JoinBanner />
+</Layout>

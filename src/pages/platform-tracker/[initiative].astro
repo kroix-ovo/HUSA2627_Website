@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import Icon from '../../components/Icon.astro';
+import { initiatives } from '../../content/platform';
+import { site } from '../../content/site';
+export function getStaticPaths() {
+  return initiatives.map((initiative) => ({
+    params: { initiative: initiative.slug },
+    props: { initiative },
+  }));
+}
+const { initiative } = Astro.props;
+---
+
+<Layout title={initiative.title}>
+  <PageIntro
+    title={initiative.title}
+    section="Our platform"
+    description={initiative.summary}
+  />
+  <section class="page-body">
+    <div class="container split-page">
+      <div class="prose">
+        <h2>Our commitments</h2>
+        {initiative.commitments.length ? (
+          <ol class="commitment-list">
+            {initiative.commitments.map((commitment) => (
+              <li>{commitment}</li>
+            ))}
+          </ol>
+        ) : (
+          <p>Contact HUSA for more information about this platform priority.</p>
+        )}
+        <h2>Progress & evidence</h2>
+        {initiative.evidence.length ? (
+          <ul>
+            {initiative.evidence.map((update) => (
+              <li>
+                <time datetime={update.date}>{update.date}</time> ·{' '}
+                <a href={update.href}>{update.title}</a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>
+            Read the administration’s latest reported progress in the official
+            ALL IN platform tracker.
+          </p>
+        )}
+        <a class="button" href={site.platformTracker}>
+          View the live tracker <Icon />
+        </a>
+        <a class="text-link" href="/platform-tracker/">
+          Explore the full platform <Icon />
+        </a>
+      </div>
+      <aside class="side-panel">
+        <h2>Your experience matters.</h2>
+        <p>
+          Have a campus concern connected to this priority? Share it with HUSA
+          through the Case Compass Program.
+        </p>
+        <a class="button" href={site.caseCompass}>
+          Request support
+        </a>
+        <a class="text-link" href="/contact/">
+          Contact HUSA <Icon />
+        </a>
+      </aside>
+    </div>
+  </section>
+</Layout>
