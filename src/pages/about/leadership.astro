@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import Icon from '../../components/Icon.astro';
-import { site } from '../../content/site';
+import { site, leaders } from '../../content/site';
 ---
 
 <Layout title="Meet HUSA 66">
@@ -14,34 +14,16 @@ import { site } from '../../content/site';
   <section class="page-body">
     <div class="container">
       <div class="leadership-grid">
-        <article class="leader">
-          <img
-            src="/images/president-ware.webp"
-            width="720"
-            height="1085"
-            alt="President Ware"
-            loading="lazy"
-          />
-          <h2>President Ware</h2>
-          <p>President · HUSA Executive Branch</p>
-          <a class="button" href={`mailto:${site.email}`}>
-            Contact the Executive Branch
-          </a>
-        </article>
-        <article class="leader">
-          <img
-            src="/images/vice-president-garcia.webp"
-            width="720"
-            height="1090"
-            alt="Vice President Garcia"
-            loading="lazy"
-          />
-          <h2>Vice President Garcia</h2>
-          <p>Vice President · HUSA Executive Branch</p>
-          <a class="button" href={`mailto:${site.email}`}>
-            Contact the Executive Branch
-          </a>
-        </article>
+        {leaders.map((leader) => (
+          <article class="leader">
+            <p class="leader-role">{leader.role}</p>
+            <h2>{leader.name}</h2>
+            <p>{leader.role} · HUSA Executive Branch</p>
+            <a class="button" href={`mailto:${site.email}`}>
+              Contact the Executive Branch
+            </a>
+          </article>
+        ))}
       </div>
       <div class="callout">
         <h2>Explore the teams behind the work.</h2>

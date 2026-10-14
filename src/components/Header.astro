@@ -22,9 +22,9 @@ const path = Astro.url.pathname;
       type="button"
       aria-expanded="false"
       aria-controls="primary-navigation"
-      aria-label="Open navigation"
     >
       <Icon name="menu" />
+      <span>Menu</span>
     </button>
     <nav id="primary-navigation" aria-label="Main navigation">
       {navigation.map((link) => (
@@ -35,8 +35,13 @@ const path = Astro.url.pathname;
           {link.label}
         </a>
       ))}
-      <a class="search-control" href="/search-husa/" aria-label="Search HUSA">
+      <a
+        class="search-control"
+        href="/search-husa/"
+        aria-current={path.startsWith('/search-husa/') ? 'page' : undefined}
+      >
         <Icon name="search" />
+        <span>Search</span>
       </a>
     </nav>
   </div>
@@ -62,16 +67,12 @@ const path = Astro.url.pathname;
   const navigation = document.querySelector<HTMLElement>('#primary-navigation');
   function closeMenu(returnFocus = false) {
     toggle?.setAttribute('aria-expanded', 'false');
-    toggle?.setAttribute('aria-label', 'Open navigation');
     if (returnFocus) toggle?.focus();
   }
+  // The button keeps its visible "Menu" name; aria-expanded tells screen readers whether it is open.
   toggle?.addEventListener('click', () => {
     const open = toggle.getAttribute('aria-expanded') !== 'true';
     toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute(
-      'aria-label',
-      open ? 'Close navigation' : 'Open navigation',
-    );
   });
   document.addEventListener('keydown', (event) => {
     if (
@@ -92,7 +93,8 @@ const path = Astro.url.pathname;
     if (event.target instanceof Element && event.target.closest('a'))
       closeMenu();
   });
-  matchMedia('(min-width: 901px)').addEventListener('change', () =>
+  // Matches the 1080px menu breakpoint in global.css.
+  matchMedia('(min-width: 1081px)').addEventListener('change', () =>
     closeMenu(),
   );
 </script>

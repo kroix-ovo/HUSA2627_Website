@@ -5,6 +5,9 @@ export const site = {
   email: 'husaexec@gmail.com',
   phone: '202-527-9416',
   address: '2397 6th St NW, Washington, DC, Room 102',
+  // From the published Wix contact page, checked October 13, 2026.
+  office: 'Armour J. Blackburn University Center, Suite 102',
+  officeHours: 'Monday–Friday',
   instagram: 'https://www.instagram.com/husassociation/',
   linktree: 'https://linktr.ee/husaexec',
   platformTracker:
@@ -14,6 +17,13 @@ export const site = {
   caseCompass:
     'https://docs.google.com/forms/d/e/1FAIpQLSfnmGPxERf6IPNVO4JPqzhNG9lZN75QdXcDjnlHPoqqgVoaMA/viewform',
 };
+
+// Current executive leadership, supplied by the project lead on October 13, 2026.
+// Portraits stay off the site until approved photos are supplied.
+export const leaders = [
+  { name: 'Jeremy Allman', role: 'President' },
+  { name: 'Ryanna Mowatt', role: 'Vice President' },
+];
 
 export const navigation = [
   { label: 'About', href: '/about/' },

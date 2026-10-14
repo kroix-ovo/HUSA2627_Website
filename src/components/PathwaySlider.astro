@@ -1,0 +1,199 @@
+---
+// Wix-style slideshow for the homepage "Start here" pathways.
+// Accessibility rules (see DESIGN.md): it pauses on hover or keyboard focus,
+// has a visible pause button, never auto-advances for reduced-motion users,
+// and shows every slide stacked if JavaScript does not run.
+import Icon from './Icon.astro';
+
+interface Slide {
+  title: string;
+  text: string;
+  href: string;
+  action: string;
+}
+interface Props {
+  label: string;
+  slides: Slide[];
+}
+const { label, slides } = Astro.props;
+---
+
+<div
+  class="slider"
+  data-slider
+  aria-roledescription="carousel"
+  aria-label={label}
+>
+  <div class="slider-track" data-slider-track aria-live="off">
+    {slides.map((slide, index) => (
+      <div
+        class="slide"
+        role="group"
+        aria-roledescription="slide"
+        aria-label={`${index + 1} of ${slides.length}: ${slide.title}`}
+        data-slide
+      >
+        <div class="slide-copy">
+          <p class="slide-count" aria-hidden="true">
+            {String(index + 1).padStart(2, '0')} /{' '}
+            {String(slides.length).padStart(2, '0')}
+          </p>
+          <h3>{slide.title}</h3>
+          <p>{slide.text}</p>
+          <a class="button button-white" href={slide.href}>
+            {slide.action} <Icon />
+          </a>
+        </div>
+        <div class="slide-photo">
+          <img
+            class={`slide-crop-${index + 1}`}
+            src="/images/howard-campus.webp"
+            width="1600"
+            height="2400"
+            alt=""
+            loading="lazy"
+          />
+        </div>
+      </div>
+    ))}
+  </div>
+  <div class="slider-controls" data-slider-controls hidden>
+    <button class="slider-arrow" type="button" data-slider-prev>
+      <Icon name="chevron-left" />
+      <span class="visually-hidden">Previous slide</span>
+    </button>
+    <div class="slider-dots">
+      {slides.map((slide, index) => (
+        <button
+          class="slider-dot"
+          type="button"
+          data-slider-dot={index}
+          aria-label={`Show slide ${index + 1}: ${slide.title}`}
+        >
+          <span></span>
+        </button>
+      ))}
+    </div>
+    <button class="slider-arrow" type="button" data-slider-next>
+      <Icon name="chevron-right" />
+      <span class="visually-hidden">Next slide</span>
+    </button>
+    <button class="slider-toggle" type="button" data-slider-toggle>
+      <span data-slider-pause-icon>
+        <Icon name="pause" />
+      </span>
+      <span data-slider-play-icon hidden>
+        <Icon name="play" />
+      </span>
+      <span data-slider-toggle-label>Pause</span>
+    </button>
+  </div>
+</div>
+
+<script>
+  const INTERVAL = 7000;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+  document.querySelectorAll<HTMLElement>('[data-slider]').forEach((slider) => {
+    const track = slider.querySelector<HTMLElement>('[data-slider-track]')!;
+    const slides = [...slider.querySelectorAll<HTMLElement>('[data-slide]')];
+    const dots = [
+      ...slider.querySelectorAll<HTMLButtonElement>('[data-slider-dot]'),
+    ];
+    const controls = slider.querySelector<HTMLElement>(
+      '[data-slider-controls]',
+    )!;
+    const toggle = slider.querySelector<HTMLButtonElement>(
+      '[data-slider-toggle]',
+    )!;
+    const toggleLabel = slider.querySelector<HTMLElement>(
+      '[data-slider-toggle-label]',
+    )!;
+    const pauseIcon = slider.querySelector<HTMLElement>(
+      '[data-slider-pause-icon]',
+    )!;
+    const playIcon = slider.querySelector<HTMLElement>(
+      '[data-slider-play-icon]',
+    )!;
+
+    let current = 0;
+    let timer: number | undefined;
+    // "stopped" is the user's choice (pause button); hover/focus pauses only temporarily.
+    let stopped = reduceMotion.matches;
+    let held = false;
+
+    slider.classList.add('is-enhanced');
+    controls.hidden = false;
+
+    function show(index: number) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        const active = i === current;
+        slide.classList.toggle('is-active', active);
+        slide.toggleAttribute('inert', !active);
+        slide.setAttribute('aria-hidden', String(!active));
+      });
+      dots.forEach((dot, i) =>
+        dot.setAttribute('aria-current', i === current ? 'true' : 'false'),
+      );
+    }
+
+    function schedule() {
+      window.clearTimeout(timer);
+      if (stopped || held || document.hidden) return;
+      timer = window.setTimeout(() => {
+        show(current + 1);
+        schedule();
+      }, INTERVAL);
+    }
+
+    function setStopped(value: boolean) {
+      stopped = value;
+      toggleLabel.textContent = stopped ? 'Play' : 'Pause';
+      pauseIcon.hidden = stopped;
+      playIcon.hidden = !stopped;
+      // Announce slide changes only while the user is in control.
+      track.setAttribute('aria-live', stopped ? 'polite' : 'off');
+      schedule();
+    }
+
+    slider
+      .querySelector('[data-slider-prev]')!
+      .addEventListener('click', () => {
+        show(current - 1);
+        schedule();
+      });
+    slider
+      .querySelector('[data-slider-next]')!
+      .addEventListener('click', () => {
+        show(current + 1);
+        schedule();
+      });
+    dots.forEach((dot, i) =>
+      dot.addEventListener('click', () => {
+        show(i);
+        schedule();
+      }),
+    );
+    toggle.addEventListener('click', () => setStopped(!stopped));
+
+    const hold = (value: boolean) => {
+      held = value;
+      track.setAttribute('aria-live', held || stopped ? 'polite' : 'off');
+      schedule();
+    };
+    slider.addEventListener('mouseenter', () => hold(true));
+    slider.addEventListener('mouseleave', () => hold(false));
+    slider.addEventListener('focusin', () => hold(true));
+    slider.addEventListener('focusout', (event) => {
+      if (!slider.contains(event.relatedTarget as Node | null)) hold(false);
+    });
+    document.addEventListener('visibilitychange', schedule);
+    reduceMotion.addEventListener('change', () =>
+      setStopped(reduceMotion.matches),
+    );
+
+    show(0);
+    setStopped(stopped);
+  });
+</script>

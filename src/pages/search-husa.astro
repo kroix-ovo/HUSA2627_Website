@@ -5,6 +5,7 @@ import Icon from '../components/Icon.astro';
 import { offices } from '../content/resources';
 import { departments } from '../content/departments';
 import { initiatives } from '../content/platform';
+import { leaders } from '../content/site';
 const entries = [
   {
     title: 'The Herd Hub',
@@ -21,7 +22,7 @@ const entries = [
   {
     title: 'Meet HUSA 66',
     kind: 'Leadership',
-    text: 'President Ware, Vice President Garcia, and the Executive Branch.',
+    text: `${leaders.map((leader) => `${leader.role} ${leader.name}`).join(', ')}, and the Executive Branch.`,
     href: '/about/leadership/',
   },
   {

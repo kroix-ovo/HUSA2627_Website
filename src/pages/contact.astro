@@ -27,8 +27,13 @@ import { site } from '../content/site';
           <strong>{site.phone}</strong>
         </a>
         <div class="contact-item">
-          <span>Find our office</span>
-          <strong>{site.address}</strong>
+          <span>Stop by the office</span>
+          <strong>{site.office}</strong>
+          <p class="contact-detail">{site.address}</p>
+        </div>
+        <div class="contact-item">
+          <span>Office hours</span>
+          <strong>{site.officeHours}</strong>
         </div>
         <a class="text-link" href="/departments/">
           Find a specific department <Icon />

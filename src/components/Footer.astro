@@ -16,7 +16,7 @@ import { navigation, site, branches } from '../content/site';
           </span>
         </span>
       </a>
-      <p>Your voice. Your student government.</p>
+      <p>Executive Branch · {site.administration}</p>
     </div>
     <div>
       <h2>Explore</h2>
@@ -32,20 +32,38 @@ import { navigation, site, branches } from '../content/site';
       </ul>
     </div>
     <div>
+      <h2>Stay connected</h2>
+      <ul>
+        <li>
+          <a href={site.instagram}>Instagram</a>
+        </li>
+        <li>
+          <a href={site.linktree}>Linktree</a>
+        </li>
+      </ul>
+    </div>
+    <div>
       <h2>Get in touch</h2>
+      <p>
+        {site.office}
+        <br />
+        {site.address}
+      </p>
+      <a href={`tel:+1${site.phone.replaceAll('-', '')}`}>
+        Hotline: {site.phone}
+      </a>
       <a href={`mailto:${site.email}`}>{site.email}</a>
-      <a href={`tel:+1${site.phone.replaceAll('-', '')}`}>{site.phone}</a>
-      <p>{site.address}</p>
-      <a href={site.instagram}>Instagram · @husassociation</a>
-      <a href={site.linktree}>HUSA Linktree</a>
+      <p>Office hours: {site.officeHours}</p>
     </div>
   </div>
-  <div class="container footer-bottom">
-    <p>© {new Date().getFullYear()} Howard University Student Association</p>
-    <div>
+  <nav class="branch-bar" aria-label="HUSA branches">
+    <div class="container">
       {branches.map((branch) => (
         <a href={branch.href}>{branch.title}</a>
       ))}
     </div>
+  </nav>
+  <div class="container footer-bottom">
+    <p>© {new Date().getFullYear()} Howard University Student Association</p>
   </div>
 </footer>

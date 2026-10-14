@@ -16,7 +16,7 @@ The Howard University Student Association website should help students find prac
 
 The current Wix editor is the migration source; the published site must be checked separately. Existing text and assets need content-owner review before launch. Harvard's site informs organization and participation paths, not Howard-specific claims or visual identity.
 
-The editor currently identifies the 66th Administration. Treat the administration number as observed content requiring owner confirmation; do not infer a replacement number from the year.
+The editor identifies the 66th Administration, and the project lead confirmed on October 13, 2026 that the 66th is the current administration. Do not infer a different number from the year. Leadership names and portraits are not yet confirmed as current: portraits are removed from the site until approved images are supplied.
 
 ## Implementation
 
