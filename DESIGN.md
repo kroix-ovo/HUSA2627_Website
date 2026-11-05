@@ -14,7 +14,7 @@ Last updated: October 13, 2026.
 ## Hard rules
 
 1. **No AI-generated images.** Use only original HUSA/Wix photos and the HUSA seal.
-2. **No photos of people** until the project lead approves specific photos. Until then we use crops of the campus photo.
+2. **No photos of people** until the project lead approves specific photos (approved HUSA leadership photo `husa-team.webp` is used on the homepage hero). Otherwise, use crops of the campus photo.
 3. **No invented facts.** No made-up names, dates, deadlines, statuses, or contact details. If something isn't confirmed, show an honest empty state (for example, "No upcoming dates are listed yet.").
 4. **Facts live in `src/content/`**, not in page files. Leadership, contacts and office hours are in `src/content/site.ts`.
 
