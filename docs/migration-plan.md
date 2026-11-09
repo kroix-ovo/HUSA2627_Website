@@ -11,7 +11,7 @@ The observed homepage contains:
 - HUSA seal, Howard campus photography, 66th Administration title, and navy navigation.
 - A slideshow with the ALL IN message and a platform tracker link.
 - A POWR social feed labeled `@husassociation`.
-- Department Breakdown and The Herd Hub.
+- Department Breakdown and The HUSA Hub.
 - Contact information and Senate, UGSA, and Judiciary links.
 
 The footer has Instagram, Tik Tok, and Linktree destinations pointing to `instagram.com/wix`, a YouTube link pointing to Wix, and `© 2035`. Correct these from approved destinations and dates. The editor's domain-availability banner is not proof of domain ownership or a connected production domain.

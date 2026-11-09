@@ -1,7 +1,7 @@
 source_title,observed_path,evidence_level,proposed_destination,migration_action,owner,review_status,notes
 Home,/,homepage inspected in editor,/,rebuild,,pending,Retain approved HUSA identity and move useful actions higher
 Contact,/contact,homepage link and page selector,/contact/,inspect and migrate,,pending,Confirm public contacts and form behavior
-Student Resources,/resources,homepage link and page selector,/resources/,inspect and migrate,,pending,Herd Hub; verify resource categories and destinations
+Student Resources,/resources,homepage link and page selector,/resources/,inspect and migrate,,pending,HUSA Hub; verify resource categories and destinations
 Join the Team,,page selector only,/get-involved/,inspect and migrate,,pending,Confirm application links and opportunity status
 Scholarships,,page selector only,/resources/scholarships/,inspect and migrate,,pending,Verify published slug and deadlines
 New Page,,page selector only,,inspect then decide,,pending,Do not publish an unreviewed placeholder

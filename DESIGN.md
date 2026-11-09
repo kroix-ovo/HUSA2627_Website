@@ -64,8 +64,8 @@ On navy backgrounds, use white text and light blue-gray (`#C1CEE1` / `#D9E3F1`) 
 
 ## Homepage order
 
-1. **Hero:** campus photo, seal, "66th Administration", "The Howard University Student Association", "Official website", and two buttons (Herd Hub, Track our impact).
-2. **Start here slideshow:** Meet HUSA 66, Department Breakdown, The Herd Hub.
+1. **Hero:** campus photo, seal, "66th Administration", "The Howard University Student Association", "Official website", and two buttons (HUSA Hub, Track our impact).
+2. **Start here slideshow:** Meet HUSA 66, Department Breakdown, The HUSA Hub.
 3. **ALL IN slogan** with the "Track our impact!" button.
 4. **Current Initiatives:** the six platform pillars, with a link to the live ALL IN tracker for progress. Don't show local progress statuses unless they're confirmed and dated.
 5. **Stay Updated:** upcoming events (honest empty state for now) and Instagram.

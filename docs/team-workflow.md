@@ -78,6 +78,6 @@ Teach me:
 Authorized actions:
 ```
 
-Example: Help a student find housing support from the homepage. Use the approved Herd Hub content. Improve that section's mobile layout without changing its factual copy or other pages. Done when the link is visible, keyboard-accessible, and fits at 360px. Explain the CSS and show the diff. Local edits only.
+Example: Help a student find housing support from the homepage. Use the approved HUSA Hub content. Improve that section's mobile layout without changing its factual copy or other pages. Done when the link is visible, keyboard-accessible, and fits at 360px. Explain the CSS and show the diff. Local edits only.
 
 AI should explain the decision and evidence; students should be able to describe why the change helps someone. Keep private data and secrets out of prompts, public content, and commits. Never invent a successful build, browser test, or deployed result.
