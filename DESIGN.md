@@ -27,7 +27,7 @@ All colors are tokens at the top of `src/styles/global.css`. Change them there, 
 | Token | Value | Use it for |
 |---|---|---|
 | `--color-brand` | `#081B45` (navy) | Header, footer, hero overlay, title boxes, buttons, headings |
-| `--color-accent` | `#A32638` (red) | Small highlights only: ALL IN / Win in the slogan, the "Take Part" heading, list numbers, arrows |
+| `--color-accent` | `#A32638` (red) | Small highlights only: ALL IN / Win in the slogan, the "Get Involved" heading, list numbers, arrows |
 | `--color-text` | `#17243A` | Body text |
 | `--color-muted` | `#4B5B70` | Secondary text |
 | `--color-surface` | `#FFFFFF` | Page background |
@@ -38,10 +38,10 @@ On navy backgrounds, use white text and light blue-gray (`#C1CEE1` / `#D9E3F1`) 
 
 ## Type
 
-- **Font:** Montserrat for everything, self-hosted from npm (`@fontsource-variable/montserrat`, upright and italic). It's loaded in `src/layouts/Layout.astro`. Montserrat was reported as the HUSA brand font, but the brand owner still needs to confirm it.
+- **Font:** Bebas Neue (`@fontsource/bebas-neue`) for display headings/titles, and Montserrat (`@fontsource-variable/montserrat`) for body text, both self-hosted from npm. Loaded in `src/layouts/Layout.astro`.
 - **Body:** 16px, line height about 1.7.
 - **Minimum size:** 12px for anything at all; 16px for menu links.
-- **Headings:** weight 700–800, normal letter-spacing (never tighter than −0.02em), no forced line breaks.
+- **Headings:** Bebas Neue for brand titles, section headings, and display text with +10px size scale; normal letter-spacing, no forced line breaks.
 - **Uppercase** only for short labels: the hero, footer headings, and the small section labels.
 
 ## Spacing and shape
@@ -69,7 +69,7 @@ On navy backgrounds, use white text and light blue-gray (`#C1CEE1` / `#D9E3F1`) 
 3. **ALL IN slogan** with the "Track our impact!" button.
 4. **Current Initiatives:** the six platform pillars, with a link to the live ALL IN tracker for progress. Don't show local progress statuses unless they're confirmed and dated.
 5. **Stay Updated:** upcoming events (honest empty state for now) and Instagram.
-6. **Take Part:** "Help us improve" (Case Compass) and "Join the team".
+6. **Get Involved:** "Help us improve" (Case Compass) and "Join the team".
 
 ## Motion
 
